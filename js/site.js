@@ -45,19 +45,17 @@ function displayPayments() {
 
 function generateStats(loan) {
 
-    let stats = [];
-
-    
+    let remBalance = loan.loan;  
+    let stats = []; 
 
     for (let month = 1; month <= loan.term; month++) {
 
         // calculate my numbers here
         let monthlyPayment = (loan.loan) * (loan.rate / 1200) / (1 - (1 + loan.rate / 1200) ** (-loan.term));
-        let totalCost = monthlyPayment * loan.term;
-        let balance = totalCost - monthlyPayment;
-        let interest = balance * loan.rate / 1200;
+        let interest = remBalance * loan.rate / 1200;
         let principalPayment = monthlyPayment - interest;
         let totalint = interest + interest;
+        let balance = remBalance -= principalPayment;
 
 
         let payment = {
