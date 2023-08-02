@@ -9,8 +9,18 @@ function getValues() {
         rate,
     }
 
-    return newLoan;
 
+    if (isNaN(loan) || isNaN(term) || isNaN(rate)
+        || loan <= 0 || term <= 0 || rate <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Woops!',
+            text: 'Please Enter Valid Loan Details'
+        });
+
+    } else {
+        return newLoan;
+    }
 }
 
 function displayPayments() {
@@ -36,6 +46,8 @@ function displayPayments() {
 function generateStats(loan) {
 
     let stats = [];
+
+    
 
     for (let month = 1; month <= loan.term; month++) {
 
@@ -83,7 +95,7 @@ function displayTable(loan) {
         tableRow.querySelector('[data-id="principal"]').innerText = '$' + payment.principal.toFixed(2);
         tableRow.querySelector('[data-id="Interest"]').innerText = '$' + payment.interest.toFixed(2);
         tableRow.querySelector('[data-id="totalint"]').innerText = '$' + payment.totalInterest.toFixed(2);
-        tableRow.querySelector('[data-id="balance"]').innerText = '$' + payment.balance.toFixed(2);
+        tableRow.querySelector('[data-id="balance"]').innerText = '$' + Math.abs(payment.balance).toFixed(2);
 
         tableContent.appendChild(tableRow);
     });
