@@ -70,10 +70,10 @@ footer {
 
 .socialIcons {
     font-size: 2rem;
-    padding-left: .5rem;
+    padding-left: .7rem;
     color: var(--jg-theme-400);
     transition: color 0.2s;
-
+    text-decoration: none !important;
 }
 
 
